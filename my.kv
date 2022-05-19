@@ -1,0 +1,474 @@
+#:import rgba kivy.utils.get_color_from_hex
+
+WindowManager:
+    loadUpWindow:
+    mainMenuWindow:
+    importKeyWindow:
+    encryptMessageWindow:
+    ImportFileWindow:
+
+<loadUpWindow>
+    name:"loadUp"
+
+    BoxLayout:
+        orientation:'vertical'
+        padding:10
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:5
+            size_hint:1, 0.4
+
+            Label:
+                id:title
+                color: rgba("#04ca9fff")
+                text:"Encrypt ME"
+                pos_hint:{"top":0.5}
+                font_size:16
+                size_hint: 1, 0.1
+
+        BoxLayout:
+            orientation:'horizontal'
+            spacing:10
+            padding_y:15
+
+            Label:
+                text:""
+                size_hint: 0.1, 1
+
+            Button:
+                text:"Import Key"
+                on_release: root.importKeyBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+            
+            Label:
+                text:""
+                size_hint: 0.1, 1
+
+            Button:
+                text:"Generate Key"
+                on_release: root.generateKey()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+
+            Label:
+                text:""
+                size_hint: 0.1, 1
+        
+        BoxLayout:
+            orientation:'horizontal'
+            padding:5
+            size_hint:1, 0.4
+
+            Label:
+                id:encryptionKeyLbl
+                color: rgba("#000000")
+                text:"Encrypt ME"
+                pos_hint:{"top":0.5}
+                font_size:12
+                size_hint: 1, 0.1
+
+            Button:
+                size_hint: 0.15, 0.4
+                text:""
+                pos_hint:{"top":0.72}
+                background_normal: ''
+                background_color: rgba("#000000")
+    
+<mainMenuWindow>
+    name:"mainMenu"
+
+    BoxLayout:
+        orientation:'vertical'
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:5
+
+            Label:
+                id:encryptionKeyLbl
+                text: root.labelText
+                color: rgba("#04ca9fff")
+                pos_hint:{"top":1}
+                font_size:12
+            
+            Button:
+                size_hint: 0.15, 0.4
+                text:"Copy"
+                pos_hint:{"top":0.72}
+                background_normal: ''
+                background_color: rgba("#04ca9fff")
+                on_release: root.copy2CB() 
+
+        BoxLayout:
+            orientation:'horizontal'
+            spacing:20
+            padding:20
+        
+            Button:
+                text:"Encrypt Message"
+                on_release:root.EncryptMesScrnBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+
+            Button:
+                text:"Decrypt Message"
+                on_release:root.decryptMesScrBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+        
+        BoxLayout:
+            orientation:'horizontal'
+            spacing:20
+            padding:20
+
+            Button:
+                text:"Export Key"
+                on_release: root.exportKeyBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+
+            Button:
+                text:"Import/Generate Key"
+                on_release: root.importGenerateBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")
+
+        BoxLayout:
+            orientation:'horizontal'
+            spacing:20
+            padding:20
+
+            Button:
+                text:"Import Message File"
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+                on_release: root.importMessageFileBtn()
+
+            Button:
+                text:"Quit"
+                background_normal: ''
+                background_color: rgba("#04ca9fff")
+                on_release: root.quitBtn()  
+<importKeyWindow>
+    name:"importKeyScr"
+    importKey:importKey
+
+    BoxLayout:
+        orientation:'vertical'
+        padding:10
+        
+        Label:
+            text:"Please Enter The Key Below!"
+            color: rgba("#04ca9fff")
+            size_hint: 1, 0.4
+
+        TextInput:
+            id:importKey
+            hint_text:"Enter Key Here:"
+
+        BoxLayout:
+            orientation:'horizontal'
+
+            Label:
+                text:""
+                size_hint: 0.2, 0.4
+
+            Button:
+                text:"Import"
+                on_release: root.importKeyBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+                size_hint: 0.7,0.4
+                pos_hint:{"top": 0.8}
+
+            Label:
+                text:""
+                size_hint: 0.2, 0.4
+
+        # Label:
+        #     text:""
+        #     size_hint: 1, 0.1          
+
+        # Button:
+        #     text:"Generate New Key"
+        #     on_release: root.generateKey()
+        #     background_normal: ''
+        #     background_color: rgba("#04ca9fff")  
+        #     size_hint: 0.2,0.4
+        #     pos_hint:{"right": 1}
+
+<encryptMessageWindow>
+    name:"encryptMesScr"
+    mes2Encrypt:mes2Encrypt
+
+    BoxLayout:
+        orientation:'vertical'
+        padding:5
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:5
+            spacing:40
+            size_hint: 1, 0.7
+
+            Button:
+                text:"Menu"
+                on_release:root.menuBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+                size_hint:0.3, 0.7
+                pos_hint:{"top":1}
+
+            Label:
+                text:""
+
+            Button:
+                text:"Quit"
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+                size_hint:0.3, 0.7
+                pos_hint:{"top":1}
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:5
+
+            Label:
+                id:encryptionKeyLbl
+                text: root.labelText
+                color: rgba("#04ca9fff")
+                pos_hint:{"top":1}
+                font_size:12
+            
+            Button:
+                size_hint: 0.15, 0.4
+                text:"Copy"
+                pos_hint:{"top":0.72}
+                background_normal: ''
+                background_color: rgba("#04ca9fff")
+                on_release: root.copy2CB() 
+
+        BoxLayout:
+            orientation:'horizontal'
+
+            Label:
+                text:""
+                size_hint:0.2, 1
+
+            TextInput:
+                id:mes2Encrypt
+                hint_text: "Enter The Message You Wish To Encrypt:"
+       
+            Label:
+                text:""
+                size_hint:0.2, 1
+        
+        BoxLayout:
+            orientation:'vertical'
+            padding:5
+
+            Label:
+                text:""
+                size_hint: 1, 0.2
+
+            EncryptButton:
+                id:EncryptButton
+                action: self.encrypt
+                text:'Encrypt Me'
+                on_release: self.action(mes2Encrypt)
+                size_hint:0.3, 0.8
+                pos_hint:{"right":0.65}
+                background_normal: ''
+                background_color: rgba("#04ca9fff")
+
+            Label:
+                text:""
+                size_hint: 1, 0.2       
+<decryptMessageWindow>
+    name:"decryptMesScr"
+    mes2Decrypt:mes2Decrypt
+
+    BoxLayout:
+        orientation:'vertical'
+        padding:5
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:5
+            spacing:40
+            size_hint: 1, 0.7
+
+            Button:
+                text:"Menu"
+                on_release:root.menuBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")
+                size_hint:0.3, 0.7
+                pos_hint:{"top":1}  
+
+            Label:
+                text:""
+
+            Button:
+                text:"Quit"
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+                size_hint:0.3, 0.7
+                pos_hint:{"top":1}  
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding:5
+
+            Label:
+                id:encryptionKeyLbl
+                text: root.labelText
+                color: rgba("#04ca9fff")
+                pos_hint:{"top":1}
+                font_size:12
+            
+            Button:
+                size_hint: 0.15, 0.4
+                text:"Copy"
+                pos_hint:{"top":0.72}
+                background_normal: ''
+                background_color: rgba("#04ca9fff")
+                on_release: root.copy2CB() 
+        
+        BoxLayout:
+            orientation:'horizontal'
+
+            Label:
+                text:""
+                size_hint:0.2, 1
+
+            TextInput:
+                id:mes2Decrypt
+                hint_text:"Please Enter The Message You Wish To Decrypt:"
+       
+            Label:
+                text:""
+                size_hint:0.2, 1
+        
+        BoxLayout:
+            orientation:'vertical'
+            padding:5
+
+            Button:
+                text:'Decrypt Me'
+                on_release:root.decryptMesBtn()
+                size_hint:0.3, 0.8
+                pos_hint:{"right":0.65}
+                background_normal: ''
+                background_color: rgba("#04ca9fff")  
+<ImportFileWindow>
+    name: "importFileScr"
+
+    BoxLayout:
+        orientation:'vertical'
+
+
+        BoxLayout:
+            orientation:'vertical'
+
+            BoxLayout:
+                orientation:'horizontal'
+                padding:5
+                spacing:40
+                size_hint: 1, 0.7
+
+                Button:
+                    text:"Menu"
+                    on_release:root.menuBtn()
+                    background_normal: ''
+                    background_color: rgba("#04ca9fff")  
+                    size_hint:0.3, 0.7
+                    pos_hint:{"top":1}  
+
+                Label:
+                    text:""
+
+                Button:
+                    text:"Quit"
+                    background_normal: ''
+                    background_color: rgba("#04ca9fff")
+                    size_hint:0.3, 0.7
+                    pos_hint:{"top":1}   
+
+
+            Label:
+                text:"Chosse File To Import"
+                color: rgba("#04ca9fff")
+                size_hint: 1, 0.2
+
+            # FileChooserListView:
+            #     id:filechooser
+            #     on_selection:root.selected()
+
+            Button:
+                text:'Import'
+                on_release: root.importBtn()
+                background_normal: ''
+                background_color: rgba("#04ca9fff")
+                size_hint: 0.3,1
+                pos_hint:{"right":0.65}  
+
+            Label:
+                id:impFileKeyLbl
+                text: root.impFileKeyLbl
+                color: rgba("#04ca9fff")
+                pos_hint:{"top":1}
+                font_size:12
+
+            Label:
+                id:impFileMesLbl
+                text: root.impFileMesLbl
+                color: rgba("#04ca9fff")     
+  
+<ExportKeyPopup>
+    auto_dismiss: True
+    size_hint: 0.6, 0.4
+    pos_hint:{"x":0.2, "top":0.7}
+    title:"Exported Key" 
+    separator_color: 0.236, 0.254, 0.17, 1
+    
+    BoxLayout:
+        orientation:"vertical"
+        padding:10
+
+        Label:
+            text: "Key Exported to 'exportedKey.txt' "
+
+<ExportedMessagePopup>
+    auto_dismiss: True
+    size_hint: 0.6, 0.4
+    pos_hint:{"x":0.2, "top":0.7}
+    title:"Exported Message" 
+    separator_color: 0.236, 0.254, 0.17, 1
+    
+    BoxLayout:
+        orientation:"vertical"
+        padding:10
+
+        Label:
+            text: "Message Exported to 'message.txt' "
+
+        
+<ImportedMessageFilePopup>
+    auto_dismiss: True
+    size_hint: 0.6, 0.4
+    pos_hint:{"x":0.2, "top":0.7}
+    title:"Message" 
+    separator_color: 0.236, 0.254, 0.17, 1
+    
+    BoxLayout:
+        orientation:"vertical"
+        padding:10
+
+        Label:
+            text: "Your Decrypted Message:"
+        Label:
+            text: root.messageLbl   
+
